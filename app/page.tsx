@@ -113,7 +113,9 @@ export default function ChaveiroSite() {
             <div className="hidden md:flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>(83) 98844-0845</span>
+                <a href="tel:+5583988440845" className="hover:text-yellow-300">
+                  (83) 98844-0845
+                </a>
               </div>
               <Badge variant="secondary" className="bg-green-600 text-white">
                 <Clock className="h-3 w-3 mr-1" />
@@ -276,21 +278,37 @@ export default function ChaveiroSite() {
                 <Phone className="h-6 w-6 text-yellow-400 mt-1" />
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Telefone para Ligação</h3>
-                  <p className="text-blue-100">(83) 98844-0845</p>
+                  <a href="tel:+5583988440845" className="text-blue-100 hover:text-white">
+                    (83) 98844-0845
+                  </a>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
                 <MessageCircle className="h-6 w-6 text-yellow-400 mt-1" />
                 <div>
                   <h3 className="font-semibold text-lg mb-2">WhatsApp</h3>
-                  <p className="text-blue-100">(83) 99940-1932</p>
+                  <a
+                    href="https://wa.me/5583999401932"
+                    target="_blank"
+                    className="text-blue-100 hover:text-white"
+                    rel="noreferrer"
+                  >
+                    (83) 99940-1932
+                  </a>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
                 <Instagram className="h-6 w-6 text-yellow-400 mt-1" />
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Instagram</h3>
-                  <p className="text-blue-100">@chaveiroprincipal24h</p>
+                  <a
+                    href="https://instagram.com/chaveiroprincipal24h"
+                    target="_blank"
+                    className="text-blue-100 hover:text-white"
+                    rel="noreferrer"
+                  >
+                    @chaveiroprincipal24h
+                  </a>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -310,8 +328,7 @@ export default function ChaveiroSite() {
                 Falar no WhatsApp
               </Button>
               <Button
-                variant="outline"
-                className="w-full border-white text-white hover:bg-white hover:text-blue-900 py-4 text-lg"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg"
                 onClick={() => window.open("https://maps.app.goo.gl/seMgsiKW1SfUM8N16", "_blank")}
               >
                 <MapPin className="mr-2 h-5 w-5" />
@@ -337,15 +354,26 @@ export default function ChaveiroSite() {
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
             <div className="flex items-center space-x-2">
               <Phone className="h-5 w-5 text-blue-400" />
-              <span>(83) 98844-0845</span>
+              <a href="tel:+5583988440845" className="hover:text-blue-300">
+                (83) 98844-0845
+              </a>
             </div>
             <div className="flex items-center space-x-2">
               <MessageCircle className="h-5 w-5 text-green-400" />
-              <span>(83) 99940-1932</span>
+              <a href="https://wa.me/5583999401932" target="_blank" className="hover:text-green-300" rel="noreferrer">
+                (83) 99940-1932
+              </a>
             </div>
             <div className="flex items-center space-x-2">
               <Instagram className="h-5 w-5 text-pink-400" />
-              <span>@chaveiroprincipal24h</span>
+              <a
+                href="https://instagram.com/chaveiroprincipal24h"
+                target="_blank"
+                className="hover:text-pink-300"
+                rel="noreferrer"
+              >
+                @chaveiroprincipal24h
+              </a>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-700">
