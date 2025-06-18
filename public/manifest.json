@@ -1,0 +1,21 @@
+{
+  "name": "Chaveiro Principal do Castelo Branco 24h",
+  "short_name": "Chaveiro Principal",
+  "description": "Chaveiro 24 horas em João Pessoa com mais de 25 anos de experiência",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1E40AF",
+  "theme_color": "#1E40AF",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
