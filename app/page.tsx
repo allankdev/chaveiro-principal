@@ -18,6 +18,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
 
 // Logo Component
 function ChaveiroLogo({ className = "h-8 w-8" }: { className?: string }) {
@@ -99,6 +101,22 @@ export default function ChaveiroSite() {
       alt: "Maleta e ferramentas profissionais para atendimento emergencial",
     },
   ]
+
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % galleryImages.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)
+  }
+
+  // Auto-play opcional (descomente se quiser)
+  // useEffect(() => {
+  //   const timer = setInterval(nextSlide, 5000)
+  //   return () => clearInterval(timer)
+  // }, [])
 
   return (
     <div className="min-h-screen bg-white">
@@ -238,16 +256,71 @@ export default function ChaveiroSite() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">🖼️ Galeria de Fotos</h2>
             <p className="text-lg text-gray-600">Conheça nosso trabalho e estrutura</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((image, index) => (
-              <div key={index} className="overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <img
-                  src={image.src || "/placeholder.svg"}
-                  alt={image.alt}
-                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                />
+
+          {/* Carrossel */}
+          <div className="max-w-4xl mx-auto">
+            <div className="relative overflow-hidden rounded-lg shadow-xl">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {galleryImages.map((image, index) => (
+                  <div key={index} className="w-full flex-shrink-0">
+                    <img src={image.src || "/placeholder.svg"} alt={image.alt} className="w-full h-96 object-cover" />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                      <p className="text-white text-sm md:text-base font-medium">{image.alt}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              {/* Setas de navegação */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200"
+                aria-label="Foto anterior"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200"
+                aria-label="Próxima foto"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+
+              {/* Indicadores */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                {galleryImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                      index === currentSlide ? "bg-white" : "bg-white/50 hover:bg-white/75"
+                    }`}
+                    aria-label={`Ir para foto ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Miniaturas */}
+            <div className="grid grid-cols-4 gap-4 mt-6">
+              {galleryImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`relative overflow-hidden rounded-lg transition-all duration-200 ${
+                    index === currentSlide ? "ring-4 ring-blue-500 ring-opacity-75" : "hover:ring-2 hover:ring-blue-300"
+                  }`}
+                >
+                  <img src={image.src || "/placeholder.svg"} alt={image.alt} className="w-full h-20 object-cover" />
+                  {index === currentSlide && <div className="absolute inset-0 bg-blue-500/20"></div>}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
